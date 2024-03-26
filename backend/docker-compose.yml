@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   dev-db:
     image: postgres
@@ -19,6 +19,6 @@ services:
   #   ports:
   #     - 5435:5432
   #   networks:
-  #     - dev_network
+  #     - de_network
 networks:
   dev_network:
