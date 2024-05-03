@@ -1,20 +1,16 @@
-FROM node:21-alpine
+FROM node:16-alpine
 
-RUN mkdir -p /usr/transcendence
-
+# Set working directory
 WORKDIR /usr/transcendence
 
-# ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
+# Copy package.json and package-lock.json files
 COPY package*.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application code
 COPY . .
 
-RUN chmod 777 docker.sh
-
-EXPOSE 3001
-EXPOSE 3002
-
-CMD ["./docker.sh"]
+# Run Prisma migration and start the application
+CMD ["sh", "-c", "npm install && npx prisma migrate dev --name init && npm run start"]
