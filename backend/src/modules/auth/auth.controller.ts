@@ -16,6 +16,7 @@ import { UserService } from 'modules/user/user.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { Email2FAService } from './nodemailer/email.service';
 import { authDto } from './auth.tdo';
+import { Response } from 'express'; // Import Response from express
 
 const prisma = new PrismaClient();
 
@@ -29,7 +30,7 @@ export class AuthController {
 	) {}
 
 	@Get('user')
-	async user(@Req() req: any, @Res() res: any) {
+	async user(@Req() req: any, @Res() res: Response) {
 		try {
 			const ccokie = req.cookies;
 

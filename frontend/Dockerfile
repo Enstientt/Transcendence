@@ -1,23 +1,22 @@
 FROM node:18-slim
 
-
-RUN mkdir -p /usr/transcendence
-
+# Set working directory
 WORKDIR /usr/transcendence
 
-# ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
+# Copy package.json and package-lock.json files
 COPY package*.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application code
 COPY . .
 
-RUN chmod 777 docker.sh
+# Build the application
+RUN npm run build
 
+# Expose port
 EXPOSE 3000
 
-CMD ["./docker.sh"]
-
-# docker build -t front .
-# docker run -it -p 3000:3000 front /bin/sh
+# Run the application
+CMD ["npm", "start"]
