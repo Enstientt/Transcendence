@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-application
+  namespace: default
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:Enstientt/Transcendence.git
+    path: frontend/helm/frontend-chart
+    targetRevision: mergeItAll
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
