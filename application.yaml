@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:Enstientt/Transcendence.git
-    path: frontend/helm/frontend-chart
+    path: frontend/helm/frontend-chart/templates
     targetRevision: mergeItAll
   destination:
     server: https://kubernetes.default.svc
